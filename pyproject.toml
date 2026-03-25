@@ -1,7 +1,7 @@
 [project]
-name = "astroidgame"
-version = "0.1.0"
-description = "Add your description here"
+name = "asteroidgame"
+version = "1.0.0"
+description = "A python asteroidgame"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

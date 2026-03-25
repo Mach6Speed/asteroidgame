@@ -2,6 +2,8 @@ import pygame
 import random
 from asteroid import Asteroid
 from constants import *
+## This class is responsible for spawning new asteroids at random intervals and positions along the edges of the screen, with random velocities. It uses a timer to determine when to spawn a new asteroid, and it randomly selects an edge of the screen to spawn the asteroid from. The asteroid's velocity is determined by the edge it spawns from, with some random variation added in.
+## Code from bootdotdev
 
 
 class AsteroidField(pygame.sprite.Sprite):

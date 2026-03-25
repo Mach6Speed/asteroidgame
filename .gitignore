@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 *.egg-info
+*.lock
 
 # Virtual environments
 .venv
@@ -13,3 +14,6 @@ wheels/
 # Additonal files to ignore
 game_state.jsonl
 game_events.jsonl
+requirements.txt
+.vscode/
+

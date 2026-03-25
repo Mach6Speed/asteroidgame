@@ -12,3 +12,4 @@ wheels/
 
 # Additonal files to ignore
 game_state.jsonl
+game_events.jsonl

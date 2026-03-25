@@ -1,4 +1,6 @@
+import sys
 import pygame
+from shot import Shot
 from asteroid import Asteroid
 from player import Player
 from logger import log_state, log_event
@@ -18,8 +20,10 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
     AsteroidField.containers = (updatable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # Create the player at the center of the screen
@@ -32,6 +36,17 @@ def main():
                 return
         screen.fill(("black"))
         updatable.update(dt) # Update all sprites in the updatable group, passing the delta time
+        for asteroid in asteroids: # Check for collisions between the player and each asteroid
+            if player.collides_with(asteroid):
+                log_event("player_hit")
+                print("Game Over!")
+                sys.exit()
+        for asteroid in asteroids: # Check for collisions between each shot and each asteroid
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    log_event("asteroid_shot")
+                    shot.kill() # Remove the shot from all groups
+                    asteroid.split() # Remove the asteroid from all groups
         for drawing in drawable: # Draw all sprites in the drawable group
             drawing.draw(screen)
         pygame.display.flip()
